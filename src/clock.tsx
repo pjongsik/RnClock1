@@ -33,21 +33,15 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {getItem, setItem} from './src/common/storage';
+
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Interval from './src/common/interval/inteval'
-import Clock from './src/clock'
-import ClockO from './src/clock_o'
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
 
-function App(): React.JSX.Element {
+
+function Clock({navigation} : any): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -97,20 +91,30 @@ function App(): React.JSX.Element {
 
 
   return (
-   
-    <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Clock" component={Clock} />
-                <Stack.Screen name="Interval" component={Interval} />
-                <Stack.Screen name="ClockO" component={ClockO} />
-            </Stack.Navigator>
-            </NavigationContainer>
-        
-   
+   <View style={[styles.container, {backgroundColor: backColor}]}>
+    <View style={styles.buttonArea} >
+     <TouchableOpacity style={styles.button} onPress={() => //console.log('버튼1이 눌렸습니다!')
+              navigation.navigate('Interval')
+
+     }>
+        <Text style={styles.buttonText}>버튼1</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => //console.log('버튼2이 눌렸습니다!')
+navigation.navigate('ClockO')
+
+      }>
+        <Text style={styles.buttonText}>버튼2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => console.log('버튼3이 눌렸습니다!')}>
+        <Text style={styles.buttonText}>버튼3</Text>
+      </TouchableOpacity>
+      </View>
+    <Text style={[styles.timeText, { fontSize: fontSize }, {color : fontColor}]}> {time.toLocaleTimeString('en-US', { timeZone: 'Asia/Seoul', 'hour12' : false })}</Text>
+    </View>
+    
 
   );
 }
-
 
 
 const styles = StyleSheet.create({
@@ -152,8 +156,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
-function useFonts(arg0: { Mono: any; }): [any] {
-  throw new Error('Function not implemented.');
-}
+export default Clock;
+
 
