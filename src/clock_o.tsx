@@ -21,6 +21,8 @@ import { Button, TextInput } from 'react-native-paper';
 
 function ClockO({navigation} : any): React.JSX.Element {
 
+    const isDarkMode = useColorScheme();// === 'dark';
+
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -66,7 +68,7 @@ function ClockO({navigation} : any): React.JSX.Element {
 
 
             <Text style={[styles.number, styles.time]}> {time.toLocaleTimeString('en-US', {'hour12' : false })}</Text>
-            <Text style={[styles.number, styles.seconds]}>{secondsDegrees} / {minutesDegrees} / {hoursDegrees} </Text>
+            <Text style={[styles.number, styles.seconds]}>{isDarkMode} / {isDarkMode} / {isDarkMode} </Text>
           </View>
 
           <View style={[styles.hand, styles.secondHand, {transform: [{ rotate: `${secondsDegrees}deg` }, {translateX: -32}]}]} />
@@ -98,9 +100,11 @@ const styles = StyleSheet.create({
   number: {
     position: 'absolute',
     fontSize: 14,
+      color: '#000000',
   },
   largeNumber: {
     fontSize: 20,
+      color: '#000000',
   },
   seconds: {
     top: 10,
@@ -109,12 +113,15 @@ const styles = StyleSheet.create({
   },
   minutes: {
     top: 20,
+      color: '#000000',
   },
   hours: {
     top: 30,
+      color: '#000000',
   },
   time: {
     top: 130,
+      color: '#000000',
   },
 
   clockContainer: {

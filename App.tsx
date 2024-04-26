@@ -18,7 +18,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-   
+
 } from 'react-native';
 
 import Orientation from 'react-native-orientation-locker'; // 패키지 import
@@ -38,9 +38,11 @@ import {getItem, setItem} from './src/common/storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+
 import Interval from './src/common/interval/inteval'
 import Clock from './src/clock'
 import ClockO from './src/clock_o'
+import CampMain from './src/camping/campmain'
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,7 +65,7 @@ function App(): React.JSX.Element {
   const [fontSize, setFontSize] = useState(80); // 폰트 크기 상태 추가
   const [fontColor, setFontColor] = useState('#CCCCCC'); // 폰트 생상
   const [backColor, setBackColor] = useState('#ffffff'); // 바탕 색상
-  
+
   useEffect(()=>{
     const inteval = setInterval(() => {
       setTime(new Date());
@@ -97,16 +99,17 @@ function App(): React.JSX.Element {
 
 
   return (
-   
+
     <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Clock" component={Clock} />
                 <Stack.Screen name="Interval" component={Interval} />
                 <Stack.Screen name="ClockO" component={ClockO} />
+              <Stack.Screen name="CampMain" component={CampMain} />
             </Stack.Navigator>
             </NavigationContainer>
-        
-   
+
+
 
   );
 }
@@ -124,7 +127,7 @@ const styles = StyleSheet.create({
   timeText: {
     //fontSize: 80,
     fontWeight: 'bold',
-    
+
   },
   buttonArea : {
     position: 'absolute', // 절대 위치 지정

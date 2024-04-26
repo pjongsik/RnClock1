@@ -18,7 +18,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-   
+
 } from 'react-native';
 
 import Orientation from 'react-native-orientation-locker'; // 패키지 import
@@ -57,7 +57,7 @@ function Clock({navigation} : any): React.JSX.Element {
   const [fontSize, setFontSize] = useState(80); // 폰트 크기 상태 추가
   const [fontColor, setFontColor] = useState('#CCCCCC'); // 폰트 생상
   const [backColor, setBackColor] = useState('#ffffff'); // 바탕 색상
-  
+
   useEffect(()=>{
     const inteval = setInterval(() => {
       setTime(new Date());
@@ -105,13 +105,15 @@ navigation.navigate('ClockO')
       }>
         <Text style={styles.buttonText}>버튼2</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => console.log('버튼3이 눌렸습니다!')}>
+      <TouchableOpacity style={styles.button} onPress={() => //console.log('버튼3이 눌렸습니다!')
+          navigation.navigate('CampMain')
+           }>
         <Text style={styles.buttonText}>버튼3</Text>
       </TouchableOpacity>
       </View>
     <Text style={[styles.timeText, { fontSize: fontSize }, {color : fontColor}]}> {time.toLocaleTimeString('en-US', { timeZone: 'Asia/Seoul', 'hour12' : false })}</Text>
     </View>
-    
+
 
   );
 }
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
   timeText: {
     //fontSize: 80,
     fontWeight: 'bold',
-    
+
   },
   buttonArea : {
     position: 'absolute', // 절대 위치 지정
